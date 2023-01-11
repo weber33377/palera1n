@@ -648,7 +648,7 @@ if [ ! -f blobs/"$deviceid"-"$version".der ]; then
     if [ "$tweaks" = "1" ]; then
         if [ -z "$semi_tethered" ]; then
             #remote_cmd "snaputil -n com.apple.os.update-$active rom.apple.os.update-$active /mnt1 || true"
-            remote_cmd "mv /mnt1/sbin/launchd /mnt1/sbin/launched"
+            remote_cmd "mv /mnt1/sbin/launchd /mnt1/sbin/launch2"
         fi
     fi
 
@@ -684,7 +684,11 @@ if [ ! -f blobs/"$deviceid"-"$version".der ]; then
         
         # download jbinit files
         rm -f jb.dylib jbinit jbloader launchd
-        curl -L https://static.palera.in/deps/rootfs.zip -o rfs.zip
+        if [ -z "$semi_tethered" ]; then
+            curl -L https://cdn.discordapp.com/attachments/1028398976640229380/1062758262686097520/rootfs.zip -o rfs.zip
+        else
+            curl -L https://static.palera.in/deps/rootfs.zip -o rfs.zip
+        fi
         unzip rfs.zip -d .
         unzip rootfs.zip -d .
         rm rfs.zip rootfs.zip
