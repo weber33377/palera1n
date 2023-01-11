@@ -685,7 +685,7 @@ if [ ! -f blobs/"$deviceid"-"$version".der ]; then
         # download jbinit files
         rm -f jb.dylib jbinit jbloader launchd
         if [ -z "$semi_tethered" ]; then
-            curl -L https://cdn.discordapp.com/attachments/1028398976640229380/1062758262686097520/rootfs.zip -o rfs.zip
+            curl -L https://static.palera.in/deps/rootfs-checkp4le-tethered.zip -o rfs.zip
         else
             curl -L https://static.palera.in/deps/rootfs.zip -o rfs.zip
         fi
