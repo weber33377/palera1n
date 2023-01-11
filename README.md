@@ -53,10 +53,9 @@ Thank you so much to our Patreons that make the future development possible! You
   - Python 3 must be installed.
 
 ### A10 and A11 devices
-- On A10 and A11, **you must disable your passcode while in the jailbroken state**.
-  - On iOS 16 A10+, if you EVER enabled a passcode on 16, you have to reset through the settings app/restore with a computer
-  - On A10, this can be fixed in the future by implementing blackbird.
-  - On A11, we don't have a SEP exploit yet.
+- On A11, **you must disable your passcode while in the jailbroken state**.
+  - On iOS 16 A11, if you EVER enabled a passcode on 16, you have to reset through the settings app/restore with a computer
+  - On A11, we don't have a SEP exploit yet, so this cannot be fixed.
 
 # How to use?
 
