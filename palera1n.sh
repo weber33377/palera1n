@@ -782,33 +782,25 @@ sleep 2
 if [ ! -e "$dir"/checkra1n ]; then
 
 if [ "$os" = "Darwin" ]; then
-    pa1n_url=https://assets.checkra.in/downloads/preview/0.1337.0/checkra1n-macos
+    ra1n_url=https://assets.checkra.in/downloads/preview/0.1337.0/checkra1n-macos
 else
-    pa1n_url=https://assets.checkra.in/downloads/preview/0.1337.0/checkra1n-linux-x86_64
+    ra1n_url=https://assets.checkra.in/downloads/preview/0.1337.0/checkra1n-linux-x86_64
 fi
 
-curl -sLo "$dir"/checkra1n "$pa1n_url"
+curl -sLo "$dir"/checkra1n "$ra1n_url"
 
 fi
 chmod +x "$dir"/checkra1n
 
 echo "[*] Booting PongoOS"
 
-CHECKRA1N_EARLY_EXIT=1 "$dir"/checkra1n -Vvp
+"$dir"/checkra1n -VEvp
 sleep 2
 
 echo "/send binaries/checkra1n-kpf-pongo" | "$dir"/pongoterm
 echo "modload" | "$dir"/pongoterm
 echo "kpf" | "$dir"/pongoterm
-echo "/send binaries/dtpatcher" | "$dir"/pongoterm
-echo "modload" | "$dir"/pongoterm
-
-if [[ "$version" == *"16"* ]]; then
-    echo "dtpatch16 $disk" | "$dir"/pongoterm
-else
-    echo "dtpatch $disk" | "$dir"/pongoterm
-fi
-
+echo "dtpatch $fs" | "$dir"/pongoterm
 echo "fuse lock" | "$dir"/pongoterm
 echo "xargs $boot_args keepsyms=1 debug=0x2014e" | "$dir"/pongoterm
 echo "xfb" | "$dir"/pongoterm
