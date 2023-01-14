@@ -364,7 +364,7 @@ chmod +x "$dir"/*
 # ============
 
 echo "checkp4le | Version $version-$branch-$commit"
-echo "Written by Ploosh, Nebula and Mineek | Some code and ramdisk from Natha"
+echo "Written by Ploosh, Nebula and Mineek | Some code and ramdisk from Nathan"
 echo ""
 
 version=""
