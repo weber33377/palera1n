@@ -363,8 +363,8 @@ chmod +x "$dir"/*
 # Start
 # ============
 
-echo "palera1n | Version $version-$branch-$commit"
-echo "Written by Nebula and Mineek | Some code and ramdisk from Nathan"
+echo "checkp4le | Version $version-$branch-$commit"
+echo "Written by Ploosh, Nebula and Mineek | Some code and ramdisk from Natha"
 echo ""
 
 version=""
