@@ -794,7 +794,7 @@ chmod +x "$dir"/checkra1n
 
 echo "[*] Booting PongoOS"
 
-"$dir"/checkra1n -VEvp
+"$dir"/checkra1n -VEvpk binaries/Pongo.bin
 sleep 2
 
 echo "/send binaries/checkra1n-kpf-pongo" | "$dir"/pongoterm
