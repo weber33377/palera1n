@@ -647,8 +647,8 @@ if [ ! -f blobs/"$deviceid"-"$version".der ]; then
 
     if [ "$tweaks" = "1" ]; then
         if [ -z "$semi_tethered" ]; then
-            #remote_cmd "snaputil -n com.apple.os.update-$active rom.apple.os.update-$active /mnt1 || true"
-            remote_cmd "mv /mnt1/sbin/launchd /mnt1/sbin/launch2"
+            remote_cmd "snaputil -n com.apple.os.update-$active rom.apple.os.update-$active /mnt1 || true"
+            #remote_cmd "mv /mnt1/sbin/launchd /mnt1/sbin/launch2"
         fi
     fi
 
