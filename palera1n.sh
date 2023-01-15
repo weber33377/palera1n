@@ -782,9 +782,9 @@ sleep 2
 if [ ! -e "$dir"/checkra1n ]; then
 
 if [ "$os" = "Darwin" ]; then
-    ra1n_url=https://assets.checkra.in/downloads/preview/0.1337.0/checkra1n-macos
+    ra1n_url=https://assets.checkra.in/downloads/preview/0.1337.1/checkra1n-macos
 else
-    ra1n_url=https://assets.checkra.in/downloads/preview/0.1337.0/checkra1n-linux-x86_64
+    ra1n_url=https://assets.checkra.in/downloads/preview/0.1337.1/checkra1n-linux-x86_64
 fi
 
 curl -sLo "$dir"/checkra1n "$ra1n_url"
