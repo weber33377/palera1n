@@ -55,10 +55,8 @@ iOS 15.0-16.2 jailbreak tool for checkm8 devices
 Options:
     --help              Print this help
     --dfuhelper         A helper to help get A11 devices into DFU mode from recovery mode
-    --no-baseband       Indicate that the device does not have a baseband
     --debug             Debug the script
     --serial            Enable serial output on the device (only needed for testing with a serial cable)
-    --rootfull          Enable rootfull mode
 
 Subcommands:
     dfuhelper           An alias for --dfuhelper
@@ -77,17 +75,11 @@ parse_opt() {
         --dfuhelper)
             dfuhelper=1
             ;;
-        --no-baseband)
-            no_baseband=1
-            ;;
         --serial)
             serial=1
             ;;
         --debug)
             debug=1
-            ;;
-        --rootfull)
-            rootfull=1
             ;;
         --help)
             print_help
@@ -305,7 +297,7 @@ fi
 
 # Download checkra1n
 if [ ! -e "$dir"/checkra1n ]; then
-    link="https://assets.checkra.in/downloads/preview/0.1337.0/checkra1n-"
+    link="https://assets.checkra.in/downloads/preview/0.1337.1/checkra1n-"
     if [ "$os" = 'Darwin' ]; then
         link="${link}macos"
     else
@@ -356,23 +348,6 @@ if [ "$debug" = "1" ]; then
     set -o xtrace
 fi
 
-if [ "$rootfull" = "1" ]; then
-    echo "[*] WARNING: This will switch back to the old rootfull method, which is TETHERED for now!"
-    echo "[*] ARE YOU 100% SURE YOU WANT TO CONTINUE? (y/n)"
-    read -n 1 -s
-    if [ "$REPLY" != "y" ]; then
-        echo "[-] Exiting"
-        exit 1
-    fi
-fi
-
-if [ "$rootfull" = "1" ]; then
-    echo "[!] After the jailbreak is done, you'll need to manually bootstrap."
-    echo "[!] You can do this by running 'iproxy 1337 1337' and then"
-    echo "[!] running 'nc 127.1 1337' and typing 'bootstrap' and pressing enter."
-    echo "[!] After a few seconds Sileo and Substitute will be installed."
-fi
-
 if [ "$clean" = "1" ]; then
     rm -rf boot* work .tweaksinstalled
     echo "[*] Removed the created boot files"
@@ -389,11 +364,6 @@ echo $(echo "[*] Detected $(get_device_mode) mode device" | sed 's/dfu/DFU/')
 if grep -E 'pongo|checkra1n_stage2|diag' <<< "$(get_device_mode)"; then
     echo "[-] Detected device in unsupported mode '$(get_device_mode)'"
     exit 1;
-fi
-
-if [ "$(get_device_mode)" != "normal" ] && [ -z "$version" ] && [ "$dfuhelper" != "1" ]; then
-    echo "[-] You must pass the version your device is on when not starting from normal mode"
-    exit
 fi
 
 if [ "$(get_device_mode)" = "ramdisk" ]; then
@@ -455,14 +425,7 @@ sleep 2
 sleep 2
 _reset
 echo "[*] Booting device"
-# if rootfull, use "$dir"/checkra1n -r other/rootedramdisk.dmg -k other/pongo.bin -K other/checkra1n-kpf-pongo
-if [ "$rootfull" = "1" ]; then
-    "$dir"/checkra1n -r other/rootedramdisk.dmg -k other/pongo.bin -K other/checkra1n-kpf-pongo
-elif [ "$version" = "15"* ]; then
-    "$dir"/checkra1n -r other/rootless/rd15.dmg -k other/pongo.bin -K other/checkra1n-kpf-pongo
-else
-    "$dir"/checkra1n -r other/rootless/rd16.dmg -k other/pongo.bin -K other/checkra1n-kpf-pongo
-fi
+"$dir"/checkra1n -r other/ramdisk.dmg -k other/pongo.bin -K other/checkra1n-kpf-pongo
 
 if [ -d "logs" ]; then
     cd logs
